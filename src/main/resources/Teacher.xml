@@ -1,0 +1,31 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo_mybatis.mapper.TeacherMapper">
+    <insert id="insertTeacher" parameterType="Teacher" >
+        INSERT INTO teacher (id, name, age, mail) VALUES (#{id}, #{name}, #{age}, #{mail});
+    </insert>
+
+    <update id="updateTeacher" parameterType="Teacher">
+        UPDATE teacher SET mail = #{mail}, name = #{name}, age = #{age} WHERE ID = #{id};
+    </update>
+
+    <delete id="deleteTeacherById" parameterType="int">
+        DELETE from teacher WHERE ID = #{id};
+    </delete>
+
+    <select id="selectAllTeacher" resultMap="result">
+        SELECT * FROM teacher;
+    </select>
+
+    <select id="selectTeacherById" parameterType="int" resultType="Teacher">
+        SELECT * FROM teacher WHERE ID = #{id};
+    </select>
+
+    <resultMap id = "result" type = "Teacher">
+        <result property = "id" column = "id"/>
+        <result property = "name" column = "name"/>
+        <result property = "age" column = "age"/>
+        <result property = "mail" column = "mail"/>
+    </resultMap>
+</mapper>
